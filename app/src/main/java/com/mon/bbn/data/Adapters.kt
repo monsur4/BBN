@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -31,11 +32,17 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
         private val imageView: ImageView = itemView.findViewById(R.id.imageView)
         private val textViewName: TextView = itemView.findViewById(R.id.textViewName)
         private val textViewAge: TextView = itemView.findViewById(R.id.textViewAge)
+        private val imageButtonFavorite: ImageButton = itemView.findViewById(R.id.imageButtonFavorite)
 
         fun bind(position: Int){
             imageView.setImageResource(R.drawable.boma_placeholder)
             textViewName.text = contestants[position].name
             textViewAge.text = contestants[position].age.toString() + " years"
+            if(contestants[position].favorite) {
+                imageButtonFavorite.setImageResource(R.drawable.ic_favorite)
+            }else{
+                imageButtonFavorite.setImageResource(R.drawable.ic_favorite_border)
+            }
         }
 
         override fun onClick(p0: View?) {

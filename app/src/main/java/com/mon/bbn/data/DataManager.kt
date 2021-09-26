@@ -14,23 +14,23 @@ object DataManager {
         // add a few static contestants to the list
         // this would be changed later to use ROOM
         var contestant = Contestant("Boma", 25, Sex.Male(), Popularity.FourStar(),
-            Status.Active(), "A chilled guy")
+            Status.Active(), "A chilled guy", false)
         contestants.add(contestant)
 
         contestant = Contestant("Saskay", 23, Sex.Female(),  Popularity.FourStar(),
-            Status.Eliminated(), "A nice girl")
+            Status.Eliminated(), "A nice girl", true)
         contestants.add(contestant)
 
         contestant = Contestant("WhiteMoney", 28, Sex.Male(),Popularity.FiveStar(),
-            Status.Active(), "A great cook!")
+            Status.Active(), "A great cook!", true)
         contestants.add(contestant)
 
         contestant = Contestant("Nini", 25, Sex.Female(), Popularity.FiveStar(),
-            Status.Active(), "There is a reason she is still in the house")
+            Status.Active(), "There is a reason she is still in the house", false)
         contestants.add(contestant)
 
         contestant = Contestant("Angel", 24, Sex.Female(), Popularity.FourStar(),
-            Status.Active(), "Fun to be with")
+            Status.Active(), "Fun to be with", true)
         contestants.add(contestant)
     }
 
