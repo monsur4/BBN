@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.mon.bbn.data.AllSeasonsAdapter
 import com.mon.bbn.data.DataManager
@@ -34,10 +35,14 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val snapHelperPresentHousemates = PagerSnapHelper()
+        snapHelperPresentHousemates.attachToRecyclerView(recyclerViewPresentHousemates)
         recyclerViewPresentHousemates = binding.recyclerViewPresentHousemates
         recyclerViewPresentHousemates.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewPresentHousemates.adapter = PresentHousematesAdapter(requireContext(), DataManager.contestants)
 
+        val snapHelperAllSeasons = PagerSnapHelper()
+        snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
         recyclerViewAllSeasons = binding.recyclerViewAllSeasons
         recyclerViewAllSeasons.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewAllSeasons.adapter = AllSeasonsAdapter(requireContext(), DataManager.seasons)
