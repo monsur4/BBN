@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.mon.bbn.data.AllSeasonsAdapter
@@ -35,18 +38,25 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val snapHelperPresentHousemates = PagerSnapHelper()
-        snapHelperPresentHousemates.attachToRecyclerView(recyclerViewPresentHousemates)
+
+//        val textViewSectionSeason: TextView = binding.textViewSectionSeason
+//        textViewSectionSeason.setOnClickListener(View.OnClickListener{view -> view.findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)})
+
         recyclerViewPresentHousemates = binding.recyclerViewPresentHousemates
         recyclerViewPresentHousemates.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewPresentHousemates.adapter = PresentHousematesAdapter(requireContext(), DataManager.contestants)
 
-        val snapHelperAllSeasons = PagerSnapHelper()
-        snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
+        val snapHelperPresentHousemates = PagerSnapHelper()
+        snapHelperPresentHousemates.attachToRecyclerView(recyclerViewPresentHousemates)
+
         recyclerViewAllSeasons = binding.recyclerViewAllSeasons
         recyclerViewAllSeasons.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewAllSeasons.adapter = AllSeasonsAdapter(requireContext(), DataManager.seasons)
-            
+
+        val snapHelperAllSeasons = LinearSnapHelper()
+        snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
+
+
         return binding.root
     }
 

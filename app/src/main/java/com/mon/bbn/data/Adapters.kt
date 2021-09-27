@@ -7,7 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavArgs
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.mon.bbn.HomeFragmentDirections
 import com.mon.bbn.R
 
 class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contestant>):
@@ -35,6 +41,7 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
         private val imageButtonFavorite: ImageButton = itemView.findViewById(R.id.imageButtonFavorite)
 
         fun bind(position: Int){
+            itemView.setOnClickListener(this)
             imageView.setImageResource(R.drawable.boma_placeholder)
             textViewName.text = contestants[position].name
             textViewAge.text = contestants[position].age.toString() + " years"
@@ -45,8 +52,11 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
             }
         }
 
-        override fun onClick(p0: View?) {
-            TODO("Open up the new Activity and pass along the adapter position")
+        override fun onClick(view: View?) {
+            Toast.makeText(context, "Position Clicked is " + adapterPosition, Toast.LENGTH_SHORT).show()
+            val position: Int = adapterPosition
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(position)
+            view?.findNavController()?.navigate(action)
         }
     }
 }
@@ -79,9 +89,24 @@ class AllSeasonsAdapter(context: Context, seasons:ArrayList<Season>) :
             textView.text = "Season " + seasons[position].seasonNumber
         }
 
-        override fun onClick(p0: View?) {
-            TODO("Not yet implemented")
+        override fun onClick(view: View?) {
+            Toast.makeText(context, "Feature not yet implemented", Toast.LENGTH_SHORT).show()
         }
+    }
+}
+
+class DetailsFragmentViewPagerAdapter(fragment: Fragment, contestants:ArrayList<Contestant>)
+    :FragmentStateAdapter(fragment){
+    private val contestants = contestants
+    override fun getItemCount(): Int {
+        return contestants.size
+    }
+
+    override fun createFragment(position: Int): Fragment {
+        val contestant = contestants[position]
+        val fragment = DetailsObjectFragment(contestant)
+
+        return fragment
     }
 
 }

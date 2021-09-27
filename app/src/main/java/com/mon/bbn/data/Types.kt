@@ -42,9 +42,9 @@ sealed class Popularity(var num: Int) {
     }
 }
 
-sealed class Status{
-    class Eliminated:Status()
-    class Active:Status()
+sealed class Status(var currentStatus: String){
+    class Eliminated(currentStatus: String = "Eliminated"):Status(currentStatus)
+    class Active(currentStatus:String = "Active"):Status(currentStatus)
 
     fun checkPopularity(popularity: Popularity){
         when(popularity){

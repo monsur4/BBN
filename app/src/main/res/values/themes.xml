@@ -42,4 +42,19 @@
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="contestantDetailItemStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:color">@color/black</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="contestantDetailTextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:color">@color/black</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 </resources>
