@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.mon.bbn.R
+import com.mon.bbn.entity.Contestant
 
 class DetailsObjectFragment(contestant: Contestant) : Fragment() {
     private val contestant = contestant

@@ -1,5 +1,8 @@
 package com.mon.bbn.data
 
+import com.mon.bbn.entity.Contestant
+import com.mon.bbn.entity.Season
+
 object DataManager {
     val contestants = ArrayList<Contestant>()
     val seasons = ArrayList<Season>()

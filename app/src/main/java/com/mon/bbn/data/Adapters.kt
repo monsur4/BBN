@@ -10,17 +10,20 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavArgs
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mon.bbn.HomeFragmentDirections
 import com.mon.bbn.R
+import com.mon.bbn.entity.Contestant
+import com.mon.bbn.entity.Season
+import com.mon.bbn.vm.MainViewModel
 
-class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contestant>):
+class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contestant>, mainViewModel: MainViewModel):
     RecyclerView.Adapter<PresentHousematesAdapter.PresentHousematesViewHolder>() {
     private var context = context
     private val contestants = contestants
+    private val mainViewModel = mainViewModel
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PresentHousematesViewHolder {
         var view = LayoutInflater.from(context).inflate(R.layout.card_view_present_housemates,parent, false)
@@ -61,6 +64,7 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
             val position: Int = adapterPosition
             val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(position)
             view?.findNavController()?.navigate(action)
+            mainViewModel.setPosition(position)
         }
     }
 }
@@ -99,9 +103,10 @@ class AllSeasonsAdapter(context: Context, seasons:ArrayList<Season>) :
     }
 }
 
-class DetailsFragmentViewPagerAdapter(fragment: Fragment, contestants:ArrayList<Contestant>)
+class DetailsFragmentViewPagerAdapter(fragment: Fragment, contestants:ArrayList<Contestant>, mainViewModel: MainViewModel)
     :FragmentStateAdapter(fragment){
     private val contestants = contestants
+    private val mainViewModel = mainViewModel
     override fun getItemCount(): Int {
         return contestants.size
     }

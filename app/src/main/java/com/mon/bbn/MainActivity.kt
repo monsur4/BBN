@@ -2,12 +2,15 @@ package com.mon.bbn
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mon.bbn.databinding.ActivityMainBinding
+import com.mon.bbn.vm.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -23,5 +26,8 @@ class MainActivity : AppCompatActivity() {
         //setup toolbar
         val toolbar = binding.toolbar
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration)
+
+        //retrieve viewModel
+        val mainViewModel: MainViewModel by viewModels()
     }
 }
