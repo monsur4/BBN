@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.mon.bbn.DetailsObjectFragment
 import com.mon.bbn.HomeFragmentDirections
 import com.mon.bbn.R
 import com.mon.bbn.entity.Contestant

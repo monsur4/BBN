@@ -14,12 +14,14 @@
 
         <ImageView
             android:id="@+id/imageViewDetail"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.457"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/boma_placeholder" />
 
         <TextView
@@ -130,5 +132,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.18734178" />
+
+        <TextView
+            android:id="@+id/textOverlayImageStatus"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            android:background="@drawable/rounded_textview"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:rotation="-45"
+            android:text="ELIMINATED"
+            android:textSize="60sp"
+            app:autoSizeTextType="none"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

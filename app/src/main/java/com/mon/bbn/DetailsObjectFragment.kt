@@ -1,13 +1,15 @@
-package com.mon.bbn.data
+package com.mon.bbn
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.mon.bbn.R
+import com.mon.bbn.data.Status
 import com.mon.bbn.entity.Contestant
 
 class DetailsObjectFragment(contestant: Contestant) : Fragment() {
@@ -22,6 +24,7 @@ class DetailsObjectFragment(contestant: Contestant) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val imageViewDetail: ImageView = view.findViewById(R.id.imageViewDetail)
+        val textOverlayImageStatus: TextView = view.findViewById(R.id.textOverlayImageStatus)
         val textViewDetailName: TextView = view.findViewById(R.id.textViewDetailName)
         val textViewDetailAge: TextView = view.findViewById(R.id.textViewDetailAge)
         val textViewDetailStatus: TextView = view.findViewById(R.id.textViewDetailStatus)
@@ -31,7 +34,8 @@ class DetailsObjectFragment(contestant: Contestant) : Fragment() {
         imageViewDetail.setImageResource(R.drawable.boma_placeholder)
         // TODO: add a scrim overlay on the image of eliminated contestants
         when(contestant.status){
-//            is Status.Eliminated ->
+            is Status.Active -> textOverlayImageStatus.setVisibility(GONE)
+            is Status.Eliminated -> textOverlayImageStatus.setVisibility(View.VISIBLE)
         }
 
         textViewDetailName.text = contestant.name
