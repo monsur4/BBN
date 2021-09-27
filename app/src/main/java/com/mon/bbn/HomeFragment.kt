@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.mon.bbn.data.AllSeasonsAdapter
 import com.mon.bbn.data.DataManager
+import com.mon.bbn.data.MyLinearSnapHelper
 import com.mon.bbn.data.PresentHousematesAdapter
 import com.mon.bbn.databinding.FragmentHomeBinding
 import com.mon.bbn.vm.MainViewModel
@@ -56,14 +57,14 @@ class HomeFragment : Fragment() {
         val recyclerViewPresentHousematesAdapter = PresentHousematesAdapter(requireContext(), DataManager.contestants, mainViewModel)
         recyclerViewPresentHousemates.adapter = recyclerViewPresentHousematesAdapter
 
-        val snapHelperPresentHousemates = PagerSnapHelper()
+        val snapHelperPresentHousemates = MyLinearSnapHelper()
         snapHelperPresentHousemates.attachToRecyclerView(recyclerViewPresentHousemates)
 
         recyclerViewAllSeasons = binding.recyclerViewAllSeasons
         recyclerViewAllSeasons.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewAllSeasons.adapter = AllSeasonsAdapter(requireContext(), DataManager.seasons)
 
-        val snapHelperAllSeasons = LinearSnapHelper()
+        val snapHelperAllSeasons = PagerSnapHelper()
         snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
 
 
