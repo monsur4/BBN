@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavArgs
 import androidx.navigation.findNavController
@@ -46,10 +47,13 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
             textViewName.text = contestants[position].name
             textViewAge.text = contestants[position].age.toString() + " years"
             if(contestants[position].favorite) {
-                imageButtonFavorite.setImageResource(R.drawable.ic_favorite)
+                //imageButtonFavorite.setImageResource(R.drawable.ic_favorite)
+                imageButtonFavorite.background = AppCompatResources.getDrawable(context, R.drawable.ic_favorite)
             }else{
-                imageButtonFavorite.setImageResource(R.drawable.ic_favorite_border)
+                //imageButtonFavorite.setImageResource(R.drawable.ic_favorite_border)
+                imageButtonFavorite.background = AppCompatResources.getDrawable(context, R.drawable.ic_favorite_border)
             }
+            //imageButtonFavorite.setBackgroundColor()
         }
 
         override fun onClick(view: View?) {

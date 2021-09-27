@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         //setup toolbar
         val toolbar = binding.toolbar
-        toolbar.title = "Meet the Housemates"
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration)
     }
 }

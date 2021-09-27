@@ -5,15 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.viewpager2.widget.ViewPager2
 import com.mon.bbn.data.DataManager
 import com.mon.bbn.data.DetailsFragmentViewPagerAdapter
 import com.mon.bbn.databinding.FragmentDetailsBinding
+import kotlin.properties.Delegates
 
 class DetailsFragment : Fragment() {
     lateinit var binding: FragmentDetailsBinding
     lateinit var viewPager: ViewPager2
     lateinit var detailsFragmentViewPagerAdapter: DetailsFragmentViewPagerAdapter
+    var position = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,10 +35,12 @@ class DetailsFragment : Fragment() {
         // Get adapter position of recyclerView and scroll to corresponding viewPager item
         val arguments: Bundle? = arguments
         val bundle = DetailsFragmentArgs.fromBundle(arguments!!)
-        val position = bundle.adapterPosition
+        position = bundle.adapterPosition
 
-        viewPager.currentItem = position
-//        viewPager.setCurrentItem(position, false)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        viewPager.doOnPreDraw { viewPager.currentItem = position }
     }
 }

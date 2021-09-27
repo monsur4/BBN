@@ -12,8 +12,8 @@ sealed class Popularity(var num: Int) {
     class FiveStar(num: Int = 5) : Popularity(num)
 
     companion object{
-        private const val blackStar = "U+2605"
-        private const val whiteStar = "U+2606"
+        private const val blackStar = "\u2605"
+        private const val whiteStar = "\u2606"
         fun convertNumberToStarString(num: Int): String {
             var starString = ""
             var count = 0
