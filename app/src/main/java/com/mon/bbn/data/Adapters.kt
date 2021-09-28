@@ -14,7 +14,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mon.bbn.DetailsObjectFragment
-import com.mon.bbn.HomeFragmentDirections
 import com.mon.bbn.R
 import com.mon.bbn.entity.Contestant
 import com.mon.bbn.entity.Season
@@ -63,8 +62,7 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
         override fun onClick(view: View?) {
             Toast.makeText(context, "Position Clicked is " + adapterPosition, Toast.LENGTH_SHORT).show()
             val position: Int = adapterPosition
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(position)
-            view?.findNavController()?.navigate(action)
+            view?.findNavController()?.navigate(R.id.action_homeFragment_to_detailsFragment)
             mainViewModel.setPosition(position)
         }
     }

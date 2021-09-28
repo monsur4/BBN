@@ -16,6 +16,7 @@
             android:id="@+id/imageViewDetail"
             android:layout_width="360dp"
             android:layout_height="360dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.457"
@@ -32,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:text="Name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewDetail" />
 
         <TextView
             android:id="@+id/textView4"
@@ -144,10 +145,10 @@
             android:text="ELIMINATED"
             android:textSize="60sp"
             app:autoSizeTextType="none"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/imageViewDetail"
+            app:layout_constraintEnd_toEndOf="@id/imageViewDetail"
+            app:layout_constraintStart_toStartOf="@id/imageViewDetail"
+            app:layout_constraintTop_toTopOf="@id/imageViewDetail" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
