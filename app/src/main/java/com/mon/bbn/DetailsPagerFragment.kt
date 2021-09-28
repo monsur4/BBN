@@ -10,8 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.mon.bbn.adapter.DetailsFragmentViewPagerAdapter
 import com.mon.bbn.data.DataManager
-import com.mon.bbn.data.DetailsFragmentViewPagerAdapter
 import com.mon.bbn.databinding.FragmentDetailsBinding
 import com.mon.bbn.vm.MainViewModel
 import kotlin.properties.Delegates

@@ -5,18 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.mon.bbn.data.AllSeasonsAdapter
+import com.mon.bbn.adapter.AllSeasonsAdapter
+import com.mon.bbn.adapter.PresentHousematesAdapter
 import com.mon.bbn.data.DataManager
 import com.mon.bbn.data.MyLinearSnapHelper
-import com.mon.bbn.data.PresentHousematesAdapter
 import com.mon.bbn.databinding.FragmentHomeBinding
 import com.mon.bbn.vm.MainViewModel
 
