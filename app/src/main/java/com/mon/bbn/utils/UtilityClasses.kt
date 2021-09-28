@@ -27,7 +27,7 @@ sealed class Popularity(var num: Int) {
                 n++
                 count++
             }*/
-            while(count<6){
+            while(count<5){
                 starString += whiteStar
                 count++
             }

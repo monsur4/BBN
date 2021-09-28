@@ -16,16 +16,6 @@ import com.mon.bbn.data.MyLinearSnapHelper
 import com.mon.bbn.databinding.FragmentHomeBinding
 import com.mon.bbn.vm.MainViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
 
     lateinit var binding:FragmentHomeBinding
@@ -39,10 +29,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-//        val textViewSectionSeason: TextView = binding.textViewSectionSeason
-//        textViewSectionSeason.setOnClickListener(View.OnClickListener{view -> view.findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)})
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         recyclerViewPresentHousemates = binding.recyclerViewPresentHousemates
         val recyclerViewPresentHousematesLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -62,7 +49,6 @@ class HomeFragment : Fragment() {
 
         val snapHelperAllSeasons = PagerSnapHelper()
         snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
-
 
         return binding.root
     }
