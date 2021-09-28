@@ -16,7 +16,7 @@ import com.mon.bbn.databinding.FragmentDetailsBinding
 import com.mon.bbn.vm.MainViewModel
 import kotlin.properties.Delegates
 
-class DetailsFragment : Fragment() {
+class DetailsPagerFragment : Fragment() {
     lateinit var binding: FragmentDetailsBinding
     lateinit var viewPager: ViewPager2
     lateinit var detailsFragmentViewPagerAdapter: DetailsFragmentViewPagerAdapter
