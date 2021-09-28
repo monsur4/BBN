@@ -30,4 +30,5 @@ class MainActivity : AppCompatActivity() {
         //retrieve viewModel
         val mainViewModel: MainViewModel by viewModels()
     }
+
 }

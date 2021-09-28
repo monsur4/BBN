@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.SharedElementCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -50,12 +51,36 @@ class HomeFragment : Fragment() {
         val snapHelperAllSeasons = PagerSnapHelper()
         snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
 
+        //TODO 3: set up exit shared element transition
+        setExitSharedElementCallback(object: SharedElementCallback(){
+            override fun onMapSharedElements(
+                names: MutableList<String>?,
+                sharedElements: MutableMap<String, View>?
+            ) {
+                val name = names!!.get(0)
+                val selectedViewHolder =
+                    recyclerViewPresentHousemates.findViewHolderForAdapterPosition(mainViewModel.getPosition())
+                if(selectedViewHolder == null || selectedViewHolder.itemView ==null){
+                    return
+                }
+                // shared element are indexed based on how they were added, so map the first name element
+                // to the first view (imageView)
+                sharedElements!!.put(name, selectedViewHolder.itemView.findViewById(R.id.imageView))
+            }
+        })
+
+        // TODO 3B?: setEnterSharedElementCallBack ? - not sure
+
+        //TODO 8b: call postponeEnterTransition on Both Fragments
+        postponeEnterTransition()
+
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
         recyclerViewPresentHousemates.scrollToPosition(mainViewModel.getPosition())
+
     }
 
 }

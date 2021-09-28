@@ -10,7 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
+import com.mon.bbn.HomeFragmentDirections
 import com.mon.bbn.R
 import com.mon.bbn.entity.Contestant
 import com.mon.bbn.vm.MainViewModel
@@ -53,12 +55,20 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
                 imageButtonFavorite.background = AppCompatResources.getDrawable(context, R.drawable.ic_favorite_border)
             }
             //imageButtonFavorite.setBackgroundColor()
+        // TODO 1 - setTransitionName
+            imageView.transitionName = context.getString(R.string.home_image_transition_name)
         }
 
         override fun onClick(view: View?) {
             Toast.makeText(context, "Position Clicked is " + adapterPosition, Toast.LENGTH_SHORT).show()
             val position: Int = adapterPosition
-            view?.findNavController()?.navigate(R.id.action_homeFragment_to_detailsFragment)
+
+            //TODO 2 - add shared element transition to the navController navigate i.e inform the system that we have a shared element transition.
+            // NB: we could pass in several pairs which will be in order but we will just do the imageView first
+            val extras = FragmentNavigatorExtras(Pair(imageView, context.getString(R.string.detail_image_transition_name)))
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(position)
+            view?.findNavController()?.navigate(action, extras)
+            // TODO X - postponeEnterTransition will be used instead of setReorderingAllowed(true)
             mainViewModel.setPosition(position)
         }
     }

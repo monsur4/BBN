@@ -32,10 +32,10 @@ class DetailsObjectFragment(contestant: Contestant) : Fragment() {
         val textViewDetailHighlight: TextView = view.findViewById(R.id.textViewDetailHighlight)
 
         imageViewDetail.setImageResource(R.drawable.boma_placeholder)
-        // TODO: add a scrim overlay on the image of eliminated contestants
+        // add a scrim overlay on the image of eliminated contestants
         when(contestant.status){
-            is Status.Active -> textOverlayImageStatus.setVisibility(GONE)
-            is Status.Eliminated -> textOverlayImageStatus.setVisibility(View.VISIBLE)
+            is Status.Active -> textOverlayImageStatus.visibility = GONE
+            is Status.Eliminated -> textOverlayImageStatus.visibility = View.VISIBLE
         }
 
         textViewDetailName.text = contestant.name
@@ -43,5 +43,8 @@ class DetailsObjectFragment(contestant: Contestant) : Fragment() {
         textViewDetailStatus.text = contestant.status.currentStatus
         textViewDetailPopularity.text = contestant.popularity.stars
         textViewDetailHighlight.text = contestant.highlight
+
+        //TODO 2: set image Transition name
+        imageViewDetail.transitionName = context?.getString(R.string.detail_image_transition_name)
     }
 }

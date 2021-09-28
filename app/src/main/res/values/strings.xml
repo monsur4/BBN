@@ -2,4 +2,6 @@
     <string name="app_name">BBN</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_image_transition_name">homeImageTransitionName</string>
+    <string name="detail_image_transition_name">detailImageTransitionName</string>
 </resources>

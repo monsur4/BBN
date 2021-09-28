@@ -1,5 +1,6 @@
 package com.mon.bbn.adapter
 
+import android.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mon.bbn.DetailsObjectFragment
@@ -17,7 +18,7 @@ class DetailsFragmentViewPagerAdapter(fragment: Fragment, contestants:ArrayList<
     override fun createFragment(position: Int): Fragment {
         val contestant = contestants[position]
         val fragment = DetailsObjectFragment(contestant)
-
         return fragment
     }
+
 }
