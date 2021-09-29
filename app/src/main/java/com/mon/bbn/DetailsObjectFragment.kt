@@ -43,7 +43,7 @@ class DetailsObjectFragment(contestant: Contestant) : Fragment() {
         val textOverlayImageStatus: TextView = view.findViewById(R.id.textOverlayImageStatus)
         val textViewDetailName: TextView = view.findViewById(R.id.textViewDetailName)
 
-        imageViewDetail.setImageResource(R.drawable.boma_placeholder)
+        imageViewDetail.setImageResource(Contestant.setImage(contestant.tag))
         // add a scrim overlay on the image of eliminated contestants
         when (contestant.status) {
             is Status.Active -> textOverlayImageStatus.visibility = GONE

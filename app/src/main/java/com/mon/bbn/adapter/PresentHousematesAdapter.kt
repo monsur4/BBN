@@ -45,7 +45,8 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
 
         fun bind(position: Int){
             itemView.setOnClickListener(this)
-            imageView.setImageResource(R.drawable.boma_placeholder)
+            val tag  = contestants[position].tag
+            imageView.setImageResource(Contestant.setImage(tag))
             textViewName.text = contestants[position].name
             textViewAge.text = contestants[position].age.toString() + " years"
             if(contestants[position].favorite) {
@@ -59,7 +60,6 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
         // TODO 1 - setTransitionName
             imageView.transitionName = (imagesRes.get(contestants[position].tag)).toString()
         }
-
 
         override fun onClick(view: View?) {
             Toast.makeText(context, "Position Clicked is " + adapterPosition, Toast.LENGTH_SHORT).show()
