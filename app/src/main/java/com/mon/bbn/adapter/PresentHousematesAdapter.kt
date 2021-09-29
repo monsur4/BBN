@@ -17,11 +17,12 @@ import com.mon.bbn.R
 import com.mon.bbn.entity.Contestant
 import com.mon.bbn.vm.MainViewModel
 
-class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contestant>, mainViewModel: MainViewModel):
+class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contestant>, mainViewModel: MainViewModel, imagesRes:HashMap<String, Int>):
     RecyclerView.Adapter<PresentHousematesAdapter.PresentHousematesViewHolder>() {
     private var context = context
     private val contestants = contestants
     private val mainViewModel = mainViewModel
+    private val imagesRes = imagesRes
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PresentHousematesViewHolder {
         var view = LayoutInflater.from(context).inflate(R.layout.card_view_present_housemates,parent, false)
@@ -56,8 +57,9 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
             }
             //imageButtonFavorite.setBackgroundColor()
         // TODO 1 - setTransitionName
-            imageView.transitionName = context.getString(R.string.home_image_transition_name)
+            imageView.transitionName = (imagesRes.get(contestants[position].tag)).toString()
         }
+
 
         override fun onClick(view: View?) {
             Toast.makeText(context, "Position Clicked is " + adapterPosition, Toast.LENGTH_SHORT).show()
@@ -65,7 +67,8 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
 
             //TODO 2 - add shared element transition to the navController navigate i.e inform the system that we have a shared element transition.
             // NB: we could pass in several pairs which will be in order but we will just do the imageView first
-            val extras = FragmentNavigatorExtras(Pair(imageView, context.getString(R.string.detail_image_transition_name)))
+            //imageView.transitionName = context.getString(R.string.home_image_transition_name)
+            val extras = FragmentNavigatorExtras(Pair(imageView, imageView.transitionName))
             val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(position)
             view?.findNavController()?.navigate(action, extras)
             // TODO X - postponeEnterTransition will be used instead of setReorderingAllowed(true)

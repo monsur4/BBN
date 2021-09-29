@@ -19,6 +19,7 @@ import com.mon.bbn.adapter.DetailsFragmentViewPagerAdapter
 import com.mon.bbn.data.DataManager
 import com.mon.bbn.databinding.FragmentDetailsBinding
 import com.mon.bbn.vm.MainViewModel
+import java.util.concurrent.TimeUnit
 import kotlin.properties.Delegates
 
 class DetailsPagerFragment : Fragment() {
@@ -37,7 +38,7 @@ class DetailsPagerFragment : Fragment() {
 
         viewPager = binding.viewPager
 
-        detailsFragmentViewPagerAdapter = DetailsFragmentViewPagerAdapter(this, DataManager.contestants, mainViewModel)
+        detailsFragmentViewPagerAdapter = DetailsFragmentViewPagerAdapter(this, DataManager.contestants, mainViewModel, DataManager.images)
         viewPager.adapter = detailsFragmentViewPagerAdapter
 
         //TODO 5: inflate the transitionSet XML into code
@@ -52,41 +53,28 @@ class DetailsPagerFragment : Fragment() {
                 names: MutableList<String>?,
                 sharedElements: MutableMap<String, View>?
             ) {
-//                viewPager.currentItem
-//                viewPager.get(mainViewModel.getPosition())
-                val view = viewPager.get(viewPager.currentItem)
 
+                val currentFragment = childFragmentManager.findFragmentByTag("f${(viewPager.adapter as DetailsFragmentViewPagerAdapter).getItemId(mainViewModel.getPosition())}")
                 val name = names!!.get(0)
-                if(view == null){
-                    return
-                }
+                val view = currentFragment?.view ?: return
                 //map the shared element to that view position
                 sharedElements!!.put(name, view.findViewById(R.id.imageViewDetail))
             }
         })
 
-        //TODO 8a: call postponeEnterTransition on Both Fragments
+//        //TODO 8a: call postponeEnterTransition on Both Fragments
         postponeEnterTransition()
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //viewPager.doOnPreDraw { viewPager.currentItem = mainViewModel.getPosition()}
-        viewPager.currentItem = mainViewModel.getPosition()
-
-//        val view = viewPager.get(viewPager.currentItem) I used view instead of viewpager earlier
-        //TODO 9: call startPostponedEnterTransition after view has been drawn
-        viewPager.getViewTreeObserver().addOnPreDrawListener { viewPager.viewTreeObserver.removeOnPreDrawListener { true }
+       // TODO 9: call startPostponedEnterTransition after view has been drawn
+        viewPager.doOnPreDraw {
+            viewPager.setCurrentItem(mainViewModel.getPosition(), false)
             startPostponedEnterTransition()
-            true
         }
+
     }
 
     override fun onStop() {

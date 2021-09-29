@@ -3,19 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/drawable/circle.xml" value="0.11458333333333333" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/drawable/ic_baseline_favorite_6.xml" value="0.2125" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/drawable/ic_favorite.xml" value="0.2125" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/drawable/ic_favorite_border.xml" value="0.17" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/drawable/rounded_textview.xml" value="0.20923076923076922" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/drawable/selectable_item_background.xml" value="0.1171875" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/layout/card_view_present_housemates.xml" value="0.1" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/layout/card_view_season.xml" value="0.33" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/layout/fragment_detail_object.xml" value="0.2" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/layout/fragment_details.xml" value="0.1" />
-        <entry key="..\:/Users/OKUNIYI MUSA/AndroidStudioProjects/BBN/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/OKUNIYI/AndroidStudioProjects/BBN/app/src/main/res/layout/activity_main.xml" value="0.19114583333333332" />
+        <entry key="..\:/Users/OKUNIYI/AndroidStudioProjects/BBN/app/src/main/res/layout/fragment_home.xml" value="0.20677083333333332" />
       </map>
     </option>
   </component>
@@ -24,12 +13,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.2" />
-      </ProjectState>
-    </option>
   </component>
 </project>

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionInflater
 import com.mon.bbn.adapter.AllSeasonsAdapter
 import com.mon.bbn.adapter.PresentHousematesAdapter
 import com.mon.bbn.data.DataManager
@@ -38,7 +39,7 @@ class HomeFragment : Fragment() {
 
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
-        val recyclerViewPresentHousematesAdapter = PresentHousematesAdapter(requireContext(), DataManager.contestants, mainViewModel)
+        val recyclerViewPresentHousematesAdapter = PresentHousematesAdapter(requireContext(), DataManager.contestants, mainViewModel, DataManager.images)
         recyclerViewPresentHousemates.adapter = recyclerViewPresentHousematesAdapter
 
         val snapHelperPresentHousemates = MyLinearSnapHelper()
@@ -51,7 +52,7 @@ class HomeFragment : Fragment() {
         val snapHelperAllSeasons = PagerSnapHelper()
         snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
 
-        //TODO 3: set up exit shared element transition
+        //TODO 3[]: set up exit shared element transition
         setExitSharedElementCallback(object: SharedElementCallback(){
             override fun onMapSharedElements(
                 names: MutableList<String>?,
@@ -68,12 +69,12 @@ class HomeFragment : Fragment() {
                 sharedElements!!.put(name, selectedViewHolder.itemView.findViewById(R.id.imageView))
             }
         })
-
         // TODO 3B?: setEnterSharedElementCallBack ? - not sure
 
         //TODO 8b: call postponeEnterTransition on Both Fragments
-        postponeEnterTransition()
+//        postponeEnterTransition()
 
+//        exitTransition = TransitionInflater.from(context).inflateTransition(R.transition.home_fragment_exit_transition)
         return binding.root
     }
 
