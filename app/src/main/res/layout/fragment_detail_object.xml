@@ -80,7 +80,8 @@
             style="@style/contestantDetailTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="@+id/textView3"
             tools:text="Boma" />
 
@@ -89,7 +90,7 @@
             style="@style/contestantDetailTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/textViewDetailName"
             app:layout_constraintTop_toTopOf="@+id/textView4"
             tools:text="25 years" />
 
@@ -98,7 +99,7 @@
             style="@style/contestantDetailTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/textViewDetailAge"
             app:layout_constraintTop_toTopOf="@+id/textView5"
             tools:text="Eliminated" />
 
@@ -132,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.18734178" />
+            app:layout_constraintGuide_end="304dp" />
 
         <TextView
             android:id="@+id/textOverlayImageStatus"
