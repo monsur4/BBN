@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:state_pressed="true" android:drawable="@color/purple_200_dim">
-    <color android:color="@color/purple_200_dim"/>
+
+    <item android:drawable="@color/purple_200_dim" android:state_pressed="true">
+        <color android:color="@color/purple_200_dim" />
+    </item>
+    <item android:drawable="@color/purple_200_dim" android:state_selected="true" >
+        <color android:color="@color/purple_200_dim" />
+    </item>
+    <item android:drawable="@color/purple_200_dim" android:state_focused="true" >
+        <color android:color="@color/purple_200_dim" />
+    </item>
+<item android:state_focused="false" android:state_selected="false" android:drawable="@color/purple_200_transparent">
+    <color android:color="@color/purple_200_transparent"/>
 </item>
-    <item android:state_focused="true" android:drawable="@color/purple_200_dim">
-        <color android:color="@color/purple_200_dim"/>
-    </item>
-    <item android:state_pressed="false" android:state_focused="false">
-        <color android:color="#00df6bbc"/>
-    </item>
 </selector>

@@ -61,10 +61,13 @@ class HomeFragment : Fragment() {
         //TODO 8b: call postponeEnterTransition on Both Fragments
         postponeEnterTransition()
 
-        scrollToPosition()
-
         exitTransition = TransitionInflater.from(context).inflateTransition(R.transition.home_fragment_exit_transition)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        scrollToPosition()
     }
 
     private fun prepareTransition() {
@@ -87,11 +90,6 @@ class HomeFragment : Fragment() {
         })
 
         // TODO 3B?: setEnterSharedElementCallBack ? - not sure
-
-    }
-
-    override fun onResume() {
-        super.onResume()
 
     }
 
