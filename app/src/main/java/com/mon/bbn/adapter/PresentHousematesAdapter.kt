@@ -9,20 +9,28 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionSet
 import com.mon.bbn.HomeFragmentDirections
 import com.mon.bbn.R
 import com.mon.bbn.entity.Contestant
 import com.mon.bbn.vm.MainViewModel
+import java.util.concurrent.atomic.AtomicBoolean
 
-class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contestant>, mainViewModel: MainViewModel, imagesRes:HashMap<String, Int>):
+class PresentHousematesAdapter(fragment: Fragment, contestants: ArrayList<Contestant>, mainViewModel: MainViewModel, imagesRes:HashMap<String, Int>):
     RecyclerView.Adapter<PresentHousematesAdapter.PresentHousematesViewHolder>() {
-    private var context = context
+    private val fragment = fragment
+    private var context = fragment.context
     private val contestants = contestants
     private val mainViewModel = mainViewModel
     private val imagesRes = imagesRes
+
+//    private interface ImageLoaderListener{
+//        fun onLoadCompleted(imageView: ImageView, position: Int)
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PresentHousematesViewHolder {
         var view = LayoutInflater.from(context).inflate(R.layout.card_view_present_housemates,parent, false)
@@ -36,6 +44,20 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
     override fun getItemCount(): Int {
         return contestants.size
     }
+
+    // an implementation of the ImageLoaderListener, once images have been loaded that we can start enter transition
+
+//        inner class ImageLoaderListenerImpl(fragment: Fragment, ) : ImageLoaderListener{
+//                val fragment = fragment
+//            val enterTransitionStarted = AtomicBoolean()
+//
+//            override fun onLoadCompleted(imageView: ImageView, position: Int) {
+//                if()
+//
+//fragment.startPostponedEnterTransition()            }
+//
+//
+//    }
 
     inner class PresentHousematesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val imageView: ImageView = itemView.findViewById(R.id.imageView)
@@ -51,14 +73,20 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
             textViewAge.text = contestants[position].age.toString() + " years"
             if(contestants[position].favorite) {
                 //imageButtonFavorite.setImageResource(R.drawable.ic_favorite)
-                imageButtonFavorite.background = AppCompatResources.getDrawable(context, R.drawable.ic_favorite)
+                imageButtonFavorite.background = AppCompatResources.getDrawable(context!!, R.drawable.ic_favorite)
             }else{
                 //imageButtonFavorite.setImageResource(R.drawable.ic_favorite_border)
-                imageButtonFavorite.background = AppCompatResources.getDrawable(context, R.drawable.ic_favorite_border)
+                imageButtonFavorite.background = AppCompatResources.getDrawable(context!!, R.drawable.ic_favorite_border)
             }
             //imageButtonFavorite.setBackgroundColor()
         // TODO 1 - setTransitionName
             imageView.transitionName = (imagesRes.get(contestants[position].tag)).toString()
+
+
+//            begin startPostponedEnterTransition once the position is in view
+            if(mainViewModel.getPosition() == position){
+                fragment.startPostponedEnterTransition()
+            }
         }
 
         override fun onClick(view: View?) {
@@ -69,10 +97,13 @@ class PresentHousematesAdapter(context: Context, contestants: ArrayList<Contesta
             // NB: we could pass in several pairs which will be in order but we will just do the imageView first
             //imageView.transitionName = context.getString(R.string.home_image_transition_name)
             val extras = FragmentNavigatorExtras(Pair(imageView, imageView.transitionName))
+            // exclude the selected view from the exit transition
+            (fragment.exitTransition as TransitionSet).excludeTarget(itemView, true)
             val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(position)
             view?.findNavController()?.navigate(action, extras)
             // TODO X - postponeEnterTransition will be used instead of setReorderingAllowed(true)
             mainViewModel.setPosition(position)
         }
+
     }
 }

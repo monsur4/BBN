@@ -17,6 +17,10 @@ import com.mon.bbn.data.DataManager
 import com.mon.bbn.data.MyLinearSnapHelper
 import com.mon.bbn.databinding.FragmentHomeBinding
 import com.mon.bbn.vm.MainViewModel
+import android.view.View.OnLayoutChangeListener
+
+
+
 
 class HomeFragment : Fragment() {
 
@@ -39,7 +43,7 @@ class HomeFragment : Fragment() {
 
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
-        val recyclerViewPresentHousematesAdapter = PresentHousematesAdapter(requireContext(), DataManager.contestants, mainViewModel, DataManager.images)
+        val recyclerViewPresentHousematesAdapter = PresentHousematesAdapter(this, DataManager.contestants, mainViewModel, DataManager.images)
         recyclerViewPresentHousemates.adapter = recyclerViewPresentHousematesAdapter
 
         val snapHelperPresentHousemates = MyLinearSnapHelper()
@@ -52,8 +56,20 @@ class HomeFragment : Fragment() {
         val snapHelperAllSeasons = PagerSnapHelper()
         snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
 
+        prepareTransition()
+
+        //TODO 8b: call postponeEnterTransition on Both Fragments
+        postponeEnterTransition()
+
+        scrollToPosition()
+
+        exitTransition = TransitionInflater.from(context).inflateTransition(R.transition.home_fragment_exit_transition)
+        return binding.root
+    }
+
+    private fun prepareTransition() {
         //TODO 3[]: set up exit shared element transition
-        setExitSharedElementCallback(object: SharedElementCallback(){
+        setExitSharedElementCallback(object : SharedElementCallback() {
             override fun onMapSharedElements(
                 names: MutableList<String>?,
                 sharedElements: MutableMap<String, View>?
@@ -61,7 +77,7 @@ class HomeFragment : Fragment() {
                 val name = names!!.get(0)
                 val selectedViewHolder =
                     recyclerViewPresentHousemates.findViewHolderForAdapterPosition(mainViewModel.getPosition())
-                if(selectedViewHolder == null || selectedViewHolder.itemView ==null){
+                if (selectedViewHolder == null || selectedViewHolder.itemView == null) {
                     return
                 }
                 // shared element are indexed based on how they were added, so map the first name element
@@ -69,19 +85,45 @@ class HomeFragment : Fragment() {
                 sharedElements!!.put(name, selectedViewHolder.itemView.findViewById(R.id.imageView))
             }
         })
+
         // TODO 3B?: setEnterSharedElementCallBack ? - not sure
 
-        //TODO 8b: call postponeEnterTransition on Both Fragments
-//        postponeEnterTransition()
-
-//        exitTransition = TransitionInflater.from(context).inflateTransition(R.transition.home_fragment_exit_transition)
-        return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        recyclerViewPresentHousemates.scrollToPosition(mainViewModel.getPosition())
 
+    }
+
+    /**
+     * Scrolls the recycler view to show the last viewed item in the grid. This is important when
+     * navigating back from the grid.
+     */
+    private fun scrollToPosition() {
+        recyclerViewPresentHousemates.addOnLayoutChangeListener(object : OnLayoutChangeListener {
+            override fun onLayoutChange(
+                v: View,
+                left: Int,
+                top: Int,
+                right: Int,
+                bottom: Int,
+                oldLeft: Int,
+                oldTop: Int,
+                oldRight: Int,
+                oldBottom: Int
+            ) {
+                recyclerViewPresentHousemates.removeOnLayoutChangeListener(this)
+                val layoutManager: RecyclerView.LayoutManager = recyclerViewPresentHousemates.getLayoutManager()!!
+                val viewAtPosition = layoutManager.findViewByPosition(mainViewModel.getPosition())
+                // Scroll to position if the view for the current position is null (not currently part of
+                // layout manager children), or it's not completely visible.
+                if (viewAtPosition == null || layoutManager
+                        .isViewPartiallyVisible(viewAtPosition, false, true)
+                ) {
+                    recyclerViewPresentHousemates.post { layoutManager.scrollToPosition(mainViewModel.getPosition()) }
+                }
+            }
+        })
     }
 
 }

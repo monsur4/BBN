@@ -38,23 +38,41 @@ class DetailsPagerFragment : Fragment() {
 
         viewPager = binding.viewPager
 
-        detailsFragmentViewPagerAdapter = DetailsFragmentViewPagerAdapter(this, DataManager.contestants, mainViewModel, DataManager.images)
+        detailsFragmentViewPagerAdapter = DetailsFragmentViewPagerAdapter(
+            this,
+            DataManager.contestants,
+            mainViewModel,
+            DataManager.images
+        )
         viewPager.adapter = detailsFragmentViewPagerAdapter
 
+        prepareTransition()
+        return binding.root
+    }
+
+    // all code for setting up transitioning
+    private fun prepareTransition() {
         //TODO 5: inflate the transitionSet XML into code
-        val transition: Transition = TransitionInflater.from(context).inflateTransition(R.transition.image_tranisition)
+        val transition: Transition =
+            TransitionInflater.from(context).inflateTransition(R.transition.image_tranisition)
 
         //TODO 6: set the transition into the shared element transition
         sharedElementEnterTransition = transition
 
         //TODO 7: set the enter Shared Element Callback, and attach the view to the appropriate name
-        setEnterSharedElementCallback(object : SharedElementCallback(){
+        setEnterSharedElementCallback(object : SharedElementCallback() {
             override fun onMapSharedElements(
                 names: MutableList<String>?,
                 sharedElements: MutableMap<String, View>?
             ) {
 
-                val currentFragment = childFragmentManager.findFragmentByTag("f${(viewPager.adapter as DetailsFragmentViewPagerAdapter).getItemId(mainViewModel.getPosition())}")
+                val currentFragment = childFragmentManager.findFragmentByTag(
+                    "f${
+                        (viewPager.adapter as DetailsFragmentViewPagerAdapter).getItemId(
+                            mainViewModel.getPosition()
+                        )
+                    }"
+                )
                 val name = names!!.get(0)
                 val view = currentFragment?.view ?: return
                 //map the shared element to that view position
@@ -62,14 +80,10 @@ class DetailsPagerFragment : Fragment() {
             }
         })
 
-//        //TODO 8a: call postponeEnterTransition on Both Fragments
+        //        //TODO 8a: call postponeEnterTransition on Both Fragments
         postponeEnterTransition()
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-       // TODO 9: call startPostponedEnterTransition after view has been drawn
+        // TODO 9: call startPostponedEnterTransition after view has been drawn
         viewPager.doOnPreDraw {
             viewPager.setCurrentItem(mainViewModel.getPosition(), false)
             startPostponedEnterTransition()
