@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:overScrollMode="never"
     tools:context=".HomeFragment">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout"
@@ -95,28 +96,50 @@
                 />
             <TextView
                 android:id="@+id/textView"
-                style="@style/contestantNameStyle"
+                style="@style/homeTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="An important role held by many great housemates" />
 
         </LinearLayout>
 
-
-
-
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageViewInsight"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_insights"
+        android:backgroundTint="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_all_seasons"/>
 
     <TextView
         android:id="@+id/textView9"
         style="@style/sectionStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="Today's Event"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_all_seasons" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewInsight" />
+
+    <TextView
+        android:id="@+id/textViewTodaysEvent"
+        style="@style/homeTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="Jakuzzi Party!!!"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

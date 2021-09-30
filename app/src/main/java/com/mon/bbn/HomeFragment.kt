@@ -1,10 +1,8 @@
 package com.mon.bbn
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.app.SharedElementCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,8 +16,8 @@ import com.mon.bbn.data.MyLinearSnapHelper
 import com.mon.bbn.databinding.FragmentHomeBinding
 import com.mon.bbn.vm.MainViewModel
 import android.view.View.OnLayoutChangeListener
-
-
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 
 
 class HomeFragment : Fragment() {
@@ -36,6 +34,8 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        setHasOptionsMenu(true)
 
         recyclerViewPresentHousemates = binding.recyclerViewPresentHousemates
         val recyclerViewPresentHousematesLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -77,7 +77,6 @@ class HomeFragment : Fragment() {
                 names: MutableList<String>?,
                 sharedElements: MutableMap<String, View>?
             ) {
-                val name = names!!.get(0)
                 val selectedViewHolder =
                     recyclerViewPresentHousemates.findViewHolderForAdapterPosition(mainViewModel.getPosition())
                 if (selectedViewHolder == null || selectedViewHolder.itemView == null) {
@@ -85,7 +84,8 @@ class HomeFragment : Fragment() {
                 }
                 // shared element are indexed based on how they were added, so map the first name element
                 // to the first view (imageView)
-                sharedElements!!.put(name, selectedViewHolder.itemView.findViewById(R.id.imageView))
+                sharedElements!!.put(names!![0], selectedViewHolder.itemView.findViewById(R.id.imageView))
+                sharedElements.put(names[1], selectedViewHolder.itemView.findViewById(R.id.imageButtonFavorite))
             }
         })
 
@@ -124,4 +124,13 @@ class HomeFragment : Fragment() {
         })
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        item.onNavDestinationSelected(findNavController())
+        return true
+    }
 }

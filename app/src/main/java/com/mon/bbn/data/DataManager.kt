@@ -9,7 +9,7 @@ object DataManager {
     val seasons = ArrayList<Season>()
     val images = HashMap<String,Int>()
 
-
+    val loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 
     init{
         initializeContestants()
@@ -20,24 +20,24 @@ object DataManager {
     private fun initializeContestants(){
         // add a few static contestants to the list
         // this would be changed later to use ROOM
-        var contestant = Contestant("Boma", 25, Sex.Male(), Popularity.FourStar(),
-            Status.Active(), "A chilled guy", false, tag = "boma")
+        var contestant = Contestant("Boma", 25, Sex.Male(), Popularity.AnyNumber(60), 40,
+            Status.Active(), loremIpsumText, false, tag = "boma", "Rivers, Nigeria")
         contestants.add(contestant)
 
-        contestant = Contestant("Saskay", 23, Sex.Female(),  Popularity.FourStar(),
-            Status.Eliminated(), "A nice girl", true, tag = "saskay")
+        contestant = Contestant("Saskay", 23, Sex.Female(),  Popularity.AnyNumber(66), 50,
+            Status.Eliminated(), loremIpsumText, true, tag = "saskay", "Adamawa, Nigeria")
         contestants.add(contestant)
 
-        contestant = Contestant("WhiteMoney", 28, Sex.Male(),Popularity.FiveStar(),
-            Status.Active(), "A great cook!", true, tag = "white_money")
+        contestant = Contestant("WhiteMoney", 28, Sex.Male(),Popularity.AnyNumber(80), 70,
+            Status.Active(), loremIpsumText, true, tag = "white_money", "Enugu, Nigeria")
         contestants.add(contestant)
 
-        contestant = Contestant("Nini", 25, Sex.Female(), Popularity.FiveStar(),
-            Status.Active(), "There is a reason she is still in the house", false,tag = "nini")
+        contestant = Contestant("Nini", 25, Sex.Female(), Popularity.AnyNumber(88), 76,
+            Status.Active(), loremIpsumText, false,tag = "nini", "Edo, Nigeria")
         contestants.add(contestant)
 
-        contestant = Contestant("Angel", 24, Sex.Female(), Popularity.FourStar(),
-            Status.Active(), "Fun to be with", true, tag = "angel")
+        contestant = Contestant("Angel", 24, Sex.Female(), Popularity.AnyNumber(90), 56,
+            Status.Active(), loremIpsumText, true, tag = "angel", "Akwa Ibom, Nigeria")
         contestants.add(contestant)
     }
 

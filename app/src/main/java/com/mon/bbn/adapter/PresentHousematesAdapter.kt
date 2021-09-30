@@ -1,6 +1,5 @@
 package com.mon.bbn.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.mon.bbn.HomeFragmentDirections
 import com.mon.bbn.R
 import com.mon.bbn.entity.Contestant
 import com.mon.bbn.vm.MainViewModel
-import java.util.concurrent.atomic.AtomicBoolean
 
 class PresentHousematesAdapter(fragment: Fragment, contestants: ArrayList<Contestant>, mainViewModel: MainViewModel, imagesRes:HashMap<String, Int>):
     RecyclerView.Adapter<PresentHousematesAdapter.PresentHousematesViewHolder>() {
@@ -68,7 +66,7 @@ class PresentHousematesAdapter(fragment: Fragment, contestants: ArrayList<Contes
         fun bind(position: Int){
             itemView.setOnClickListener(this)
             val tag  = contestants[position].tag
-            imageView.setImageResource(Contestant.setImage(tag))
+            imageView.setImageResource(Contestant.setProfileImage(tag))
             textViewName.text = contestants[position].name
             textViewAge.text = contestants[position].age.toString() + " years"
             if(contestants[position].favorite) {
@@ -80,7 +78,8 @@ class PresentHousematesAdapter(fragment: Fragment, contestants: ArrayList<Contes
             }
             //imageButtonFavorite.setBackgroundColor()
         // TODO 1 - setTransitionName
-            imageView.transitionName = (imagesRes.get(contestants[position].tag)).toString()
+            imageView.transitionName = ("${imagesRes.get(contestants[position].tag)}_image").toString()
+            imageButtonFavorite.transitionName = ("${imagesRes.get(contestants[position].tag)}_favorite").toString()
 
 
 //            begin startPostponedEnterTransition once the position is in view
@@ -96,7 +95,10 @@ class PresentHousematesAdapter(fragment: Fragment, contestants: ArrayList<Contes
             //TODO 2 - add shared element transition to the navController navigate i.e inform the system that we have a shared element transition.
             // NB: we could pass in several pairs which will be in order but we will just do the imageView first
             //imageView.transitionName = context.getString(R.string.home_image_transition_name)
-            val extras = FragmentNavigatorExtras(Pair(imageView, imageView.transitionName))
+            val extras = FragmentNavigatorExtras(
+                Pair(imageView, imageView.transitionName),
+                Pair(imageButtonFavorite, imageButtonFavorite.transitionName)
+            )
             // exclude the selected view from the exit transition
             (fragment.exitTransition as TransitionSet).excludeTarget(itemView, true)
             val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(position)
