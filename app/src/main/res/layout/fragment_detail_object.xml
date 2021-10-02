@@ -1,154 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="4dp"
-    app:contentPadding="8dp">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:layout_width="376dp"
+        android:layout_height="520dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
 
-        <ImageView
-            android:id="@+id/imageViewDetail"
-            android:layout_width="360dp"
-            android:layout_height="360dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.457"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/boma_placeholder" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/contestantDetailItemStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewDetail" />
+            <ImageView
+                android:id="@+id/imageViewBackgroundDetail"
+                android:layout_width="0dp"
+                android:layout_height="144dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/boma_background" />
 
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/contestantDetailItemStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Age"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            <ImageView
+                android:id="@+id/imageViewDetail"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="16dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewBackgroundDetail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewBackgroundDetail"
+                app:srcCompat="@drawable/boma_placeholder" />
 
-        <TextView
-            android:id="@+id/textView5"
-            style="@style/contestantDetailItemStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Status"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/contestantDetailItemStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                tools:layout_editor_absoluteX="70dp"
+                tools:layout_editor_absoluteY="404dp" />
 
-        <TextView
-            android:id="@+id/textView6"
-            style="@style/contestantDetailItemStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Popularity"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/contestantDetailItemStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popularity"
+                tools:layout_editor_absoluteX="70dp"
+                tools:layout_editor_absoluteY="432dp" />
 
-        <TextView
-            android:id="@+id/textView7"
-            style="@style/contestantDetailItemStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Highlight"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            <TextView
+                android:id="@+id/textView7"
+                style="@style/contestantDetailItemStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Highlight"
+                tools:layout_editor_absoluteX="70dp"
+                tools:layout_editor_absoluteY="459dp" />
 
-        <TextView
-            android:id="@+id/textViewDetailName"
-            style="@style/contestantDetailTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="@+id/textView3"
-            tools:text="Boma" />
+            <TextView
+                android:id="@+id/textViewDetailName"
+                style="@style/sectionStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/imageViewDetail"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewBackgroundDetail"
+                tools:text="Boma Akpore" />
 
-        <TextView
-            android:id="@+id/textViewDetailAge"
-            style="@style/contestantDetailTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="@+id/textView4"
-            tools:text="25 years" />
+            <TextView
+                android:id="@+id/textViewDetailAge"
+                style="@style/contestantDetailTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textViewDetailName"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDetailName"
+                tools:text="25 years" />
 
-        <TextView
-            android:id="@+id/textViewDetailStatus"
-            style="@style/contestantDetailTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="@+id/textView5"
-            tools:text="Eliminated" />
+            <TextView
+                android:id="@+id/textViewDetailStatus"
+                style="@style/contestantDetailTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/textView5"
+                tools:layout_editor_absoluteX="70dp"
+                tools:text="Eliminated" />
 
-        <TextView
-            android:id="@+id/textViewDetailPopularity"
-            style="@style/contestantDetailTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/textViewDetailStatus"
-            app:layout_constraintTop_toTopOf="@+id/textView6"
-            tools:text="U+2605U+2605U+2605U+2605U+2606" />
+            <TextView
+                android:id="@+id/textViewDetailPopularity"
+                style="@style/contestantDetailTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textViewDetailStatus"
+                app:layout_constraintTop_toTopOf="@+id/textView6"
+                tools:text="U+2605U+2605U+2605U+2605U+2606" />
 
-        <TextView
-            android:id="@+id/textViewDetailHighlight"
-            style="@style/contestantDetailTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/textViewDetailPopularity"
-            app:layout_constraintTop_toTopOf="@+id/textView7"
-            tools:text="He is friendly" />
+            <TextView
+                android:id="@+id/textViewDetailHighlight"
+                style="@style/contestantDetailTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textViewDetailPopularity"
+                app:layout_constraintTop_toTopOf="@+id/textView7"
+                tools:text="He is friendly" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            <TextView
+                android:id="@+id/textOverlayImageStatus"
+                android:layout_width="360dp"
+                android:layout_height="360dp"
+                android:background="@drawable/rounded_textview"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:rotation="-45"
+                android:text="ELIMINATED"
+                android:textSize="60sp"
+                app:autoSizeTextType="none"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="328dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.18734178" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textViewDetailAge"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDetailAge"
+                tools:text="Delta, Nigeria" />
 
-        <TextView
-            android:id="@+id/textOverlayImageStatus"
-            android:layout_width="360dp"
-            android:layout_height="360dp"
-            android:background="@drawable/rounded_textview"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:rotation="-45"
-            android:text="ELIMINATED"
-            android:textSize="60sp"
-            app:autoSizeTextType="none"
-            app:layout_constraintBottom_toBottomOf="@id/imageViewDetail"
-            app:layout_constraintEnd_toEndOf="@id/imageViewDetail"
-            app:layout_constraintStart_toStartOf="@id/imageViewDetail"
-            app:layout_constraintTop_toTopOf="@id/imageViewDetail" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</FrameLayout>
