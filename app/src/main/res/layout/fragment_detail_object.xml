@@ -172,7 +172,7 @@
 
             <TextView
                 android:id="@+id/textViewDetailBio"
-                style="bio"
+                style="@style/contestantDetailAboutBioTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/divider"

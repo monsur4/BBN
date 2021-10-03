@@ -3,11 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_sort"
-        android:title="Sort by Favorite"
-        app:actionLayout="@layout/switch_item"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/aboutFragment"
         android:icon="@drawable/ic_hello"
         android:title="About"
