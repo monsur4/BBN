@@ -12,6 +12,12 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_HOHWinnersFragment"
+            app:destination="@id/HOHWinnersFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -21,4 +27,12 @@
             android:name="adapterPosition"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.mon.bbn.AboutFragment"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/HOHWinnersFragment"
+        android:name="com.mon.bbn.HOHWinnersFragment"
+        tools:layout="@layout/fragment_h_o_h_winners" />
 </navigation>

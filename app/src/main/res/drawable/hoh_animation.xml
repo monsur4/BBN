@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false">
+    <item android:drawable="@drawable/nengi_hoh" android:duration="1000"/>
+    <item android:drawable="@drawable/ozo_hoh" android:duration="1000"/>
+    <item android:drawable="@drawable/tacha_hoh" android:duration="1000"/>
+    <item android:drawable="@drawable/erica_hoh" android:duration="1000"/>
+</animation-list>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="purple_200_transparent">#00df6bbc</color>
     <color name="purple_200">#ffdf6bbc</color>
     <color name="purple_200_transparent">#00df6bbc</color>
     <color name="purple_200_dim">#80df6bbc</color>

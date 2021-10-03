@@ -1,8 +1,8 @@
 package com.mon.bbn.data
 
-sealed class Popularity(var num: Int) {
+sealed class Popularity(var value: Int) {
 
-    val stars:String = convertNumberToStarString(num)
+    val stars:String = convertNumberToStarString(value)
 
     class ZeroStar(num: Int = 0) : Popularity(num)
     class OneStar(num: Int = 1) : Popularity(num)
@@ -10,6 +10,7 @@ sealed class Popularity(var num: Int) {
     class ThreeStar(num: Int = 3) : Popularity(num)
     class FourStar(num: Int = 4) : Popularity(num)
     class FiveStar(num: Int = 5) : Popularity(num)
+    class AnyNumber(num: Int): Popularity(num)
 
     companion object{
         private const val blackStar = "\u2605"

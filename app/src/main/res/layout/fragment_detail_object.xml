@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewDetail"
         android:layout_width="376dp"
         android:layout_height="520dp"
         android:layout_gravity="center"
@@ -17,10 +18,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ProgressBar
+                android:id="@+id/progressBarDetailTasksCompleted"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:indeterminateOnly="false"
+                android:progressDrawable="@drawable/progress_bar"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                tools:progress="40" />
+
             <ImageView
-                android:id="@+id/imageViewBackgroundDetail"
+                android:id="@+id/imageViewDetailBackground"
                 android:layout_width="0dp"
-                android:layout_height="144dp"
+                android:layout_height="136dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -28,42 +41,15 @@
                 app:srcCompat="@drawable/boma_background" />
 
             <ImageView
-                android:id="@+id/imageViewDetail"
+                android:id="@+id/imageViewDetailProfile"
                 android:layout_width="88dp"
                 android:layout_height="88dp"
                 android:layout_marginStart="16dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewBackgroundDetail"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewDetailBackground"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewBackgroundDetail"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewDetailBackground"
                 app:srcCompat="@drawable/boma_placeholder" />
-
-            <TextView
-                android:id="@+id/textView5"
-                style="@style/contestantDetailItemStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Status"
-                tools:layout_editor_absoluteX="70dp"
-                tools:layout_editor_absoluteY="404dp" />
-
-            <TextView
-                android:id="@+id/textView6"
-                style="@style/contestantDetailItemStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Popularity"
-                tools:layout_editor_absoluteX="70dp"
-                tools:layout_editor_absoluteY="432dp" />
-
-            <TextView
-                android:id="@+id/textView7"
-                style="@style/contestantDetailItemStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Highlight"
-                tools:layout_editor_absoluteX="70dp"
-                tools:layout_editor_absoluteY="459dp" />
 
             <TextView
                 android:id="@+id/textViewDetailName"
@@ -73,8 +59,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/imageViewDetail"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewBackgroundDetail"
+                app:layout_constraintStart_toEndOf="@+id/imageViewDetailProfile"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewDetailBackground"
                 tools:text="Boma Akpore" />
 
             <TextView
@@ -82,58 +68,160 @@
                 style="@style/contestantDetailTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textViewDetailName"
                 app:layout_constraintTop_toBottomOf="@+id/textViewDetailName"
                 tools:text="25 years" />
 
             <TextView
-                android:id="@+id/textViewDetailStatus"
+                android:id="@+id/textVIewDetailState"
                 style="@style/contestantDetailTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@+id/textView5"
-                tools:layout_editor_absoluteX="70dp"
-                tools:text="Eliminated" />
+                android:text="Delta, Nigeria"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/textViewDetailAge"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDetailAge"
+                tools:text="Delta, Nigeria" />
 
-            <TextView
-                android:id="@+id/textViewDetailPopularity"
-                style="@style/contestantDetailTextStyle"
+            <ImageButton
+                android:id="@+id/imageButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/textViewDetailStatus"
-                app:layout_constraintTop_toTopOf="@+id/textView6"
-                tools:text="U+2605U+2605U+2605U+2605U+2606" />
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_facebook"
+                android:backgroundTint="@color/purple_500"
+                app:layout_constraintStart_toStartOf="@+id/textVIewDetailState"
+                app:layout_constraintTop_toBottomOf="@+id/textVIewDetailState" />
 
-            <TextView
-                android:id="@+id/textViewDetailHighlight"
-                style="@style/contestantDetailTextStyle"
+            <ImageButton
+                android:id="@+id/imageButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/textViewDetailPopularity"
-                app:layout_constraintTop_toTopOf="@+id/textView7"
-                tools:text="He is friendly" />
+                android:layout_marginStart="16dp"
+                android:background="@drawable/ic_instagram"
+                app:layout_constraintStart_toEndOf="@+id/imageButton2"
+                app:layout_constraintTop_toTopOf="@+id/imageButton2" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/ic_twitter"
+                app:layout_constraintStart_toEndOf="@+id/imageButton3"
+                app:layout_constraintTop_toTopOf="@+id/imageButton3" />
 
             <TextView
                 android:id="@+id/textOverlayImageStatus"
-                android:layout_width="360dp"
-                android:layout_height="360dp"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
                 android:background="@drawable/rounded_textview"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:rotation="-45"
                 android:text="ELIMINATED"
-                android:textSize="60sp"
+                android:textSize="14sp"
                 app:autoSizeTextType="none"
-                tools:layout_editor_absoluteX="34dp"
-                tools:layout_editor_absoluteY="328dp" />
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewDetailProfile"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewDetailProfile"
+                app:layout_constraintStart_toStartOf="@+id/imageViewDetailProfile"
+                app:layout_constraintTop_toTopOf="@+id/imageViewDetailProfile" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView4"
+                style="@style/contestantDetailSectionTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/textViewDetailAge"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDetailAge"
-                tools:text="Delta, Nigeria" />
+                android:layout_marginTop="16dp"
+                android:text="POPULARITY"
+                app:layout_constraintStart_toStartOf="@+id/imageButton2"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/contestantDetailSectionTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="TASKS"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/sectionStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Bio"
+                app:layout_constraintStart_toStartOf="@+id/divider"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <TextView
+                android:id="@+id/textViewDetailBio"
+                style="@style/contestantDetailAboutBioTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/divider"
+                app:layout_constraintStart_toStartOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                tools:text="@string/lorem_ipsum_text" />
+
+            <ProgressBar
+                android:id="@+id/progressBarDetailPopularity"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:progressDrawable="@drawable/progress_bar"
+                android:indeterminateOnly="false"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                tools:progress="60"/>
+
+            <TextView
+                android:id="@+id/textViewDetailPopularity"
+                style="@style/contestantDetailSectionTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBarDetailPopularity"
+                app:layout_constraintEnd_toEndOf="@+id/progressBarDetailPopularity"
+                app:layout_constraintStart_toStartOf="@+id/progressBarDetailPopularity"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                tools:text="60%" />
+
+            <TextView
+                android:id="@+id/textViewDetailTasksCompleted"
+                style="@style/contestantDetailSectionTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBarDetailTasksCompleted"
+                app:layout_constraintEnd_toEndOf="@+id/progressBarDetailTasksCompleted"
+                app:layout_constraintStart_toStartOf="@+id/progressBarDetailTasksCompleted"
+                app:layout_constraintTop_toTopOf="@+id/progressBarDetailTasksCompleted"
+                tools:text="40%" />
+
+            <ImageButton
+                android:id="@+id/imageButtonDetailFavorite"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/ic_favorite_border" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

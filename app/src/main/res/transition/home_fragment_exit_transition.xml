@@ -6,6 +6,7 @@
         <targets>
             <target android:targetId="@id/cardview"/>
             <target android:targetId="@id/recyclerView_all_seasons"/>
+            <target android:targetId="@id/cardViewHeadOfHouse"/>
         </targets>
     </fade>
 

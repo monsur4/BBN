@@ -5,13 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import androidx.core.app.SharedElementCallback
 import androidx.core.view.doOnPreDraw
-import androidx.core.view.get
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.viewpager2.widget.ViewPager2
@@ -19,8 +15,6 @@ import com.mon.bbn.adapter.DetailsFragmentViewPagerAdapter
 import com.mon.bbn.data.DataManager
 import com.mon.bbn.databinding.FragmentDetailsBinding
 import com.mon.bbn.vm.MainViewModel
-import java.util.concurrent.TimeUnit
-import kotlin.properties.Delegates
 
 class DetailsPagerFragment : Fragment() {
     lateinit var binding: FragmentDetailsBinding
@@ -73,10 +67,10 @@ class DetailsPagerFragment : Fragment() {
                         )
                     }"
                 )
-                val name = names!!.get(0)
                 val view = currentFragment?.view ?: return
                 //map the shared element to that view position
-                sharedElements!!.put(name, view.findViewById(R.id.imageViewDetail))
+                sharedElements!!.put(names!![0], view.findViewById(R.id.imageViewDetailProfile))
+                sharedElements.put(names[1], view.findViewById(R.id.imageButtonDetailFavorite))
             }
         })
 

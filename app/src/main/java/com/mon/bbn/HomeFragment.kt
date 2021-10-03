@@ -1,10 +1,9 @@
 package com.mon.bbn
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.app.SharedElementCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,9 +17,19 @@ import com.mon.bbn.data.MyLinearSnapHelper
 import com.mon.bbn.databinding.FragmentHomeBinding
 import com.mon.bbn.vm.MainViewModel
 import android.view.View.OnLayoutChangeListener
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 
 
-
+private val HomeFragment.imageView: ImageView
+    get() {
+        val imageViewHOH = binding.imageViewHOH
+        return imageViewHOH
+    }
 
 class HomeFragment : Fragment() {
 
@@ -29,6 +38,8 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerViewAllSeasons:RecyclerView
     private lateinit var recyclerViewPresentHousematesAdapter: PresentHousematesAdapter
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var hohAnimation: AnimationDrawable
+    private lateinit var imageViewHOH: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +47,8 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        setHasOptionsMenu(true)
 
         recyclerViewPresentHousemates = binding.recyclerViewPresentHousemates
         val recyclerViewPresentHousematesLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -45,6 +58,12 @@ class HomeFragment : Fragment() {
 
         val recyclerViewPresentHousematesAdapter = PresentHousematesAdapter(this, DataManager.contestants, mainViewModel, DataManager.images)
         recyclerViewPresentHousemates.adapter = recyclerViewPresentHousematesAdapter
+
+        // add onClickListener to navigate to the winners of HOH fragment
+        val cardViewHOH = binding.cardViewHeadOfHouse
+        cardViewHOH.setOnClickListener{view -> view.findNavController().navigate(R.id.HOHWinnersFragment)}
+        val imageButton =binding.imageButton
+        imageButton.setOnClickListener{view -> view.findNavController().navigate(R.id.HOHWinnersFragment)}
 
         val snapHelperPresentHousemates = MyLinearSnapHelper()
         snapHelperPresentHousemates.attachToRecyclerView(recyclerViewPresentHousemates)
@@ -56,15 +75,22 @@ class HomeFragment : Fragment() {
         val snapHelperAllSeasons = PagerSnapHelper()
         snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
 
+        // set up animation for hoh imageView
+        imageViewHOH = binding.imageViewHOH
+        animateHOHImages()
+
         prepareTransition()
 
         //TODO 8b: call postponeEnterTransition on Both Fragments
         postponeEnterTransition()
 
-        scrollToPosition()
-
         exitTransition = TransitionInflater.from(context).inflateTransition(R.transition.home_fragment_exit_transition)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        scrollToPosition()
     }
 
     private fun prepareTransition() {
@@ -74,7 +100,6 @@ class HomeFragment : Fragment() {
                 names: MutableList<String>?,
                 sharedElements: MutableMap<String, View>?
             ) {
-                val name = names!!.get(0)
                 val selectedViewHolder =
                     recyclerViewPresentHousemates.findViewHolderForAdapterPosition(mainViewModel.getPosition())
                 if (selectedViewHolder == null || selectedViewHolder.itemView == null) {
@@ -82,16 +107,12 @@ class HomeFragment : Fragment() {
                 }
                 // shared element are indexed based on how they were added, so map the first name element
                 // to the first view (imageView)
-                sharedElements!!.put(name, selectedViewHolder.itemView.findViewById(R.id.imageView))
+                sharedElements!!.put(names!![0], selectedViewHolder.itemView.findViewById(R.id.imageView))
+                sharedElements.put(names[1], selectedViewHolder.itemView.findViewById(R.id.imageButtonFavorite))
             }
         })
 
         // TODO 3B?: setEnterSharedElementCallBack ? - not sure
-
-    }
-
-    override fun onResume() {
-        super.onResume()
 
     }
 
@@ -126,4 +147,64 @@ class HomeFragment : Fragment() {
         })
     }
 
+    // animating hoh images
+    public fun animateHOHImages(){
+        val hohImages = listOf(R.drawable.erica_hoh, R.drawable.nengi_hoh, R.drawable.ozo_hoh, R.drawable.tacha_hoh)
+        // val hohAnimation = AnimationUtils.loadAnimation(context, R.)
+        val fadeOut = AnimationUtils.loadAnimation(context, R.anim.fade_out)
+        val fadeIn = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+        var currentImage = 0
+
+        imageViewHOH.setImageResource(R.drawable.ozo_hoh)
+        fadeOut.repeatCount = Animation.INFINITE
+        fadeOut.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(p0: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(p0: Animation?) {
+
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {
+                if (currentImage < hohImages.size){
+                    imageViewHOH.setImageResource(hohImages[currentImage++])
+                }
+                else{
+                    currentImage = 0
+                    imageViewHOH.setImageResource(hohImages[currentImage++])
+                }
+                imageViewHOH.startAnimation(fadeIn)
+
+            }
+
+        })
+        imageViewHOH.startAnimation(fadeOut
+        )
+
+        fadeIn.setAnimationListener(object :Animation.AnimationListener{
+            override fun onAnimationStart(p0: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(p0: Animation?) {
+                imageViewHOH.startAnimation(fadeOut)
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {
+
+            }
+
+        })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        item.onNavDestinationSelected(findNavController())
+        return true
+    }
 }
