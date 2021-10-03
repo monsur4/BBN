@@ -5,4 +5,8 @@
     <string name="home_image_transition_name">homeImageTransitionName</string>
     <string name="detail_image_transition_name">detailImageTransitionName</string>
     <string name="lorem_ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="about_me">My name is Leye, although some people call me Monsur.
+\nI am an Android Developer, Java/Kotlin.
+\nI like to say that \"I am a lover of chess and something else.\" But I love to code; it makes me feel ecstatic.
+\nI am an Oracle Certified Java SE 11 Developer.</string>
 </resources>

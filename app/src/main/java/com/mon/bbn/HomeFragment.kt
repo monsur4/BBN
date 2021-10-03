@@ -1,5 +1,6 @@
 package com.mon.bbn
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -16,9 +17,19 @@ import com.mon.bbn.data.MyLinearSnapHelper
 import com.mon.bbn.databinding.FragmentHomeBinding
 import com.mon.bbn.vm.MainViewModel
 import android.view.View.OnLayoutChangeListener
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 
+
+private val HomeFragment.imageView: ImageView
+    get() {
+        val imageViewHOH = binding.imageViewHOH
+        return imageViewHOH
+    }
 
 class HomeFragment : Fragment() {
 
@@ -27,6 +38,8 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerViewAllSeasons:RecyclerView
     private lateinit var recyclerViewPresentHousematesAdapter: PresentHousematesAdapter
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var hohAnimation: AnimationDrawable
+    private lateinit var imageViewHOH: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +59,12 @@ class HomeFragment : Fragment() {
         val recyclerViewPresentHousematesAdapter = PresentHousematesAdapter(this, DataManager.contestants, mainViewModel, DataManager.images)
         recyclerViewPresentHousemates.adapter = recyclerViewPresentHousematesAdapter
 
+        // add onClickListener to navigate to the winners of HOH fragment
+        val cardViewHOH = binding.cardViewHeadOfHouse
+        cardViewHOH.setOnClickListener{view -> view.findNavController().navigate(R.id.HOHWinnersFragment)}
+        val imageButton =binding.imageButton
+        imageButton.setOnClickListener{view -> view.findNavController().navigate(R.id.HOHWinnersFragment)}
+
         val snapHelperPresentHousemates = MyLinearSnapHelper()
         snapHelperPresentHousemates.attachToRecyclerView(recyclerViewPresentHousemates)
 
@@ -55,6 +74,10 @@ class HomeFragment : Fragment() {
 
         val snapHelperAllSeasons = PagerSnapHelper()
         snapHelperAllSeasons.attachToRecyclerView(recyclerViewAllSeasons)
+
+        // set up animation for hoh imageView
+        imageViewHOH = binding.imageViewHOH
+        animateHOHImages()
 
         prepareTransition()
 
@@ -121,6 +144,57 @@ class HomeFragment : Fragment() {
                     recyclerViewPresentHousemates.post { layoutManager.scrollToPosition(mainViewModel.getPosition()) }
                 }
             }
+        })
+    }
+
+    // animating hoh images
+    public fun animateHOHImages(){
+        val hohImages = listOf(R.drawable.erica_hoh, R.drawable.nengi_hoh, R.drawable.ozo_hoh, R.drawable.tacha_hoh)
+        // val hohAnimation = AnimationUtils.loadAnimation(context, R.)
+        val fadeOut = AnimationUtils.loadAnimation(context, R.anim.fade_out)
+        val fadeIn = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+        var currentImage = 0
+
+        imageViewHOH.setImageResource(R.drawable.ozo_hoh)
+        fadeOut.repeatCount = Animation.INFINITE
+        fadeOut.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(p0: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(p0: Animation?) {
+
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {
+                if (currentImage < hohImages.size){
+                    imageViewHOH.setImageResource(hohImages[currentImage++])
+                }
+                else{
+                    currentImage = 0
+                    imageViewHOH.setImageResource(hohImages[currentImage++])
+                }
+                imageViewHOH.startAnimation(fadeIn)
+
+            }
+
+        })
+        imageViewHOH.startAnimation(fadeOut
+        )
+
+        fadeIn.setAnimationListener(object :Animation.AnimationListener{
+            override fun onAnimationStart(p0: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(p0: Animation?) {
+                imageViewHOH.startAnimation(fadeOut)
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {
+
+            }
+
         })
     }
 
