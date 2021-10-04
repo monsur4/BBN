@@ -35,7 +35,7 @@ class AllSeasonsAdapter(context: Context, seasons:ArrayList<Season>) :
         private val textView: TextView = itemView.findViewById(R.id.textViewSeason)
 
         fun bind(position: Int){
-            imageView.setImageResource(R.drawable.season_5)
+            imageView.setImageResource(Season.setSeasonImage(seasons[position].tag))
             textView.text = "Season " + seasons[position].seasonNumber
         }
 

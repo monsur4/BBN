@@ -21,7 +21,6 @@ object DataManager {
         initWinnersOfHOH()
     }
 
-    //TODO
     // consider having all contestant details as a constant val
     private fun initializeContestants(){
         // add a few static contestants to the list
@@ -124,7 +123,7 @@ object DataManager {
         contestants.add(contestant)
 
         contestant = Contestant("Yerins", 21, Sex.Male(), Popularity.AnyNumber(70), 75,
-            Status.Eliminated(), "A medical doctor", true, tag = Contestant.SAMMIE, "---, Nigeria")
+            Status.Eliminated(), "A medical doctor", true, tag = Contestant.YERINS, "---, Nigeria")
         contestants.add(contestant)
 
         contestant = Contestant("Queen", 26, Sex.Female(), Popularity.AnyNumber(73), 65,
@@ -133,15 +132,15 @@ object DataManager {
     }
 
     private fun initializeSeasons(){
-        var season = Season(1, 30, "Aliu")
+        var season = Season(1, 30, "Katung Aduwak", "season_one")
         seasons.add(season)
-    season = Season(2, 30, "Bode")
+    season = Season(2, 30, "Micheal Ejeba", "season_two")
         seasons.add(season)
-    season = Season(3, 30, "Chinenye")
+    season = Season(3, 30, "Miracle Igbokwe", "season_three")
         seasons.add(season)
-    season = Season(4, 30, "Patrick")
+    season = Season(4, 30, "Mercy Eke", "season_four")
         seasons.add(season)
-    season = Season(5, 27, "Lekan")
+    season = Season(5, 27, "Laycon", "season_five")
         seasons.add(season)
     }
 

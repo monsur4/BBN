@@ -89,7 +89,6 @@ class PresentHousematesAdapter(fragment: Fragment, contestants: ArrayList<Contes
         }
 
         override fun onClick(view: View?) {
-            Toast.makeText(context, "Position Clicked is " + adapterPosition, Toast.LENGTH_SHORT).show()
             val position: Int = adapterPosition
 
             //TODO 2 - add shared element transition to the navController navigate i.e inform the system that we have a shared element transition.
